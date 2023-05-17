@@ -1,0 +1,8 @@
+---
+# defaults file for kerberos client
+kerberos_client_install_freeipa_client: false
+kerberos_client_install_ipa_client: false
+kerberos_client_install_ldap_client: false
+
+# MIT, AD, IPA 
+kerberos_client_kdc_type: ""

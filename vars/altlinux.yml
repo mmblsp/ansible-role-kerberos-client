@@ -1,0 +1,9 @@
+---
+kerberos_client_package_name:
+  - libkrb5
+  - krb5-kinit
+  - krb5-kadmin
+
+kerberos_client_package_ldap_client:
+  - openldap-clients
+  - cyrus-sasl2

@@ -1,0 +1,38 @@
+---
+# tasks file for java
+- name: Getcher facts
+  setup:
+    filter: ansible_distribution
+  when: ansible_facts['distribution'] is undefined
+
+- name: include default variables
+  include_vars:
+    file: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_facts['distribution']|lower|regex_search('^\\S+') }}.yml"
+        - main.yml
+- name: include default variables
+  include_tasks: "update_{{ ansible_facts['distribution']|lower|regex_search('^\\S+') }}.yml"
+
+- name: Install {{ kerberos_client_package_name }}
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ kerberos_client_package_name }}"
+
+- name: Install {{ kerberos_client_package_ldap_client }}
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ kerberos_client_package_ldap_client }}"
+  when: kerberos_client_install_ldap_client
+
+- name: Install freeipa-client
+  package:
+    name: "freeipa-client"
+    state: present
+  become: true
+  when: kerberos_client_install_freeipa_client

@@ -1,0 +1,22 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get os-release
+      raw: cat /etc/os-release
+      register: os_release
+      changed_when: false
+
+    - name: Test python
+      shell: "python --version 2>&1"
+      register: interpreter_python
+      failed_when: interpreter_python.rc not in (0, 127)
+      changed_when: false
+
+    - name: Create simlink python is python3 Altlinux
+      raw: ln -s /usr/bin/python3 /usr/bin/python
+      become: true
+      when:
+        - interpreter_python.rc != 0
+        - os_release.stdout is regex('Altlinux')

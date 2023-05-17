@@ -1,0 +1,9 @@
+---
+kerberos_client_package_name:
+  - krb5-kdc
+  - krb5-admin-server
+  - krb5-user
+
+kerberos_client_package_ldap_client:
+  - ldap-utils
+  - libsasl2-modules-gssapi-mit

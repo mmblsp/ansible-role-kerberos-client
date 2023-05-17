@@ -1,0 +1,7 @@
+---
+- name: update apt cache altlinux
+  command: apt-get -y update
+  args:
+    warn: False
+  changed_when: false
+  become: true

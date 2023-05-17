@@ -1,0 +1,8 @@
+---
+kerberos_client_package_name:
+  - krb5-workstation
+  - krb5-libs
+
+kerberos_client_package_ldap_client:
+  - openldap-clients
+  - cyrus-sasl-gssapi

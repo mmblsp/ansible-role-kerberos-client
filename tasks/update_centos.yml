@@ -1,0 +1,5 @@
+---
+- name: update yum cache
+  yum:
+    update_cache: yes
+  changed_when: false
